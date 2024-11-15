@@ -1,1 +1,74 @@
-<p>home works!</p>
+
+    <ng-container [formGroup]="form">
+      @if (!sent()) {
+      <div class="flex gap-3 justify-center m-5">
+        <div class="flex flex-col w-1/2">
+          <div class="flex flex-col w-1/2">
+            <label for="name">Name</label>
+            <input id="name" pInputText formControlName="name" class="p-2 border border-gray-300 rounded"/>
+          </div>
+          <div class="flex flex-col w-1/2">
+            <label for="surname">Surname</label>
+            <input id="surname" pInputText formControlName="surname" class="p-2 border border-gray-300 rounded"/>
+          </div>
+          <div class="flex flex-col w-1/2">
+            <label for="function">Function</label>
+            <input id="function" pInputText formControlName="function" class="p-2 border border-gray-300 rounded"/>
+          </div>
+          <div class="flex flex-col w-1/2">
+            <label for="company">Company</label>
+            <input id="company" pInputText formControlName="company" class="p-2 border border-gray-300 rounded"/>
+          </div>
+          <div class="flex flex-col w-1/2">
+            <label for="email">Email</label>
+            <input id="email" pInputText type="email" formControlName="email"
+                   class="p-2 border border-gray-300 rounded"/>
+          </div>
+          <div class="flex flex-col w-1/2">
+            <label class="label">Services</label>
+            <div class="flex flex-col w-1/2" formArrayName="services">
+              <div *ngFor="let service of form.controls.services.controls; let i = index" [formGroupName]="i">
+                <div class="flex items-center">
+                  <p-checkbox id="visualIdentity" formControlName="visualIdentity" [binary]="true" />
+                  <label for="visualIdentity" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Visual Identity</label>
+                </div>
+                <div class="flex items-center">
+                  <p-checkbox id="webDesign" formControlName="webDesign" [binary]="true" />
+                  <label for="checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Web Design</label>
+                </div>
+                <div class="flex items-center">
+                  <p-checkbox id="socialMedia" formControlName="visualIdentity" [binary]="true" />
+                  <label for="socialMedia" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Social Media</label>
+                </div>
+                <div class="flex items-center">
+                  <p-checkbox id="packaging" formControlName="visualIdentity" [binary]="true" />
+                  <label for="packaging" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Packaging</label>
+                </div>
+                <div class="flex items-center">
+                  <p-checkbox id="audit" formControlName="audit" [binary]="true" />
+                  <label for="audit" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Audit</label>
+                </div>
+                <div class="flex items-center">
+                  <p-checkbox id="freelance" formControlName="freelance" [binary]="true" />
+                  <label for="freelance" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    Freelance</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p>form is valid: {{form.invalid}}</p>
+          <p-button label="Submit" (onClick)="onSubmit()" [rounded]="true" [plain]="true" severity="contrast"></p-button>
+        </div>
+      </div>
+      } @else {
+      <div class="flex flex-col items-center justify-center m-5">
+        <h1 class="text-3xl font-bold">Thank you for your message</h1>
+        <p class="text-lg">We will get back to you as soon as possible</p>
+      </div>
+      }
+    </ng-container>
