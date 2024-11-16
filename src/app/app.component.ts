@@ -3,11 +3,11 @@ import {RouterOutlet} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {CheckboxModule} from 'primeng/checkbox';
 import {InputTextModule} from 'primeng/inputtext';
-
-import {PrimeNGConfig} from 'primeng/api';
-import {Aura} from 'primeng/themes/aura';
 import {ButtonModule} from 'primeng/button';
-import {definePreset} from 'primeng/themes';
+import {PrimeNG} from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+import {definePreset} from '@primeng/themes';
+
 
 @Component({
   selector: 'app-root',
@@ -19,18 +19,20 @@ import {definePreset} from 'primeng/themes';
 })
 export class AppComponent {
   title = 'jamSLF';
-  constructor(private primengConfig: PrimeNGConfig) {
+
+  constructor(private config: PrimeNG) {
     // Default theme configuration
-    this.primengConfig.theme.set({
-      preset: this.Noir,
+    this.config.theme.set({
+      preset: Aura,
       options: {
         prefix: 'p',
+        darkModeSelector: 'system',
         cssLayer: false
       }
-    });
+    })
   }
 
-   Noir = definePreset(Aura, {
+  Noir = definePreset(Aura, {
     semantic: {
       primary: {
         50: '{zinc.50}',
@@ -77,6 +79,6 @@ export class AppComponent {
       }
     }
   });
-
 }
+
 
